@@ -1,10 +1,6 @@
 from nameparser import HumanName
-import pandas as pd
 
-df = pd.DataFrame({'Name': ["John Smith", "D.J. Richies III","AJ Hardie Jr.", "Shelia Jackson-Lee", "Bob O'Donnell"]})
+name = HumanName("Dr. Juan Q. Xavier de la Vega III (Doc Vega)")
 
 
-df["first"] = df["Name"].apply(lambda x: HumanName(x).first)
-df["last"] = df["Name"].apply(lambda x: HumanName(x).last)
-
-df 
+print(name.first + " " + name.last)
