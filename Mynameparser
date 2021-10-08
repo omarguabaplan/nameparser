@@ -1,57 +1,19 @@
-from nameparser import HumanName
+import spacy
 
+nlp = spacy.load("en_core_web_sm")
 
+text = "Omar Guaba release date leaked as Apple reveals pre-orders. Olga Clinton said she was not there."
 
+# Process the text
+doc = nlp(text)
 
-# library that handles the URL stuff 
+# Iterate over the entities
+for ent in doc.ents:
+    # Print the entity text and label
+    print(ent.text, ent.label_)
 
-import urllib.request 
+# Get the span for "iPhone X"
+iphone_x = doc[1:3]
 
-  
-# Importing module required for 
-# regular expressions 
-
-import re 
-
-textfile= open("readme2.txt","w")
-  
-# Assign urlopen to a file object variable 
-
-fhand = urllib.request.urlopen ('https://www.chamber.nyc/directory.php?l=a') 
-
-  su = []
-
-for line in fhand: 
-
-    # Getting the text file 
-
-    # content line by line. 
-
-    s = line.decode().strip() 
-
-  
-
-    # regex for extracting all email-ids 
-
-    # from the text file 
-    name = HumanName(s)
-    reg = re.findall(r"[A-Za-z0-9._%+-]+"
-
-                     r"@[A-Za-z0-9.-]+"
-
-                     r"\.[A-Za-z]{2,4}", s) 
-
-  
-
-    # printing the list output 
-
-    print(reg)
-    for element in reg:
-     textfile.write(element + "\n")
-textfile.close()
-
-
-
-
-
-print(name.first + " " + name.last)
+# Print the span text
+print("Missing entity:", iphone_x.text)
